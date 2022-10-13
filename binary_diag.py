@@ -12,13 +12,13 @@ for i in range(len(str("".join(filter(str.isdigit, lines[0]))))):
     c.append(0)
 
 for a in lines:
-    o=int("".join(filter(str.isdigit, a)))
-    for y in range(len(str(o))-1,-1,-1):
-        h=o // 10**y%10
-        if h == 0:
-            c[y]+=-1
-        else:
-            c[y]+=1
+    o=str("".join(filter(str.isdigit, a)))
+    o=list(o)
+    for y in range(len(o)):
+        if o[y] == '0':
+            c[-len(o)+y]+=-1
+        elif o[y]== '1':
+            c[-len(o)+y]+=1
             
 
 for a in range(len(c)):
@@ -27,7 +27,7 @@ for a in range(len(c)):
     else:
         c[a]=0
 for a in range(len(c)):
-    x+=c[len(c)-1-a]*10**a
+    x+=c[a]*10**a
 gamma=int(str(x),2)
 epsilon = int(''.join('0' if c=='1' else ('1' if c=='0' else c) for c in str(x)),2)
 power=gamma*epsilon
