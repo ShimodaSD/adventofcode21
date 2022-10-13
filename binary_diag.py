@@ -1,6 +1,3 @@
-from sre_constants import RANGE_UNI_IGNORE
-
-
 with open('binary_diag.txt') as f:
     lines = f.readlines()
 x=0
@@ -27,8 +24,8 @@ for a in range(len(c)):
     else:
         c[a]=0
 for a in range(len(c)):
-    x+=c[a]*10**a
+    x+=c[len(c)-a-1]*10**a
 gamma=int(str(x),2)
-epsilon = int(''.join('0' if c=='1' else ('1' if c=='0' else c) for c in str(x)),2)
+epsilon = 2** len(c) + ~gamma
 power=gamma*epsilon
 print(power)
